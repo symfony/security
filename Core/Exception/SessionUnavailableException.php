@@ -12,11 +12,16 @@
 namespace Symfony\Component\Security\Core\Exception;
 
 /**
- * This exception is thrown when an account is reloaded from a provider which
- * doesn't support the passed implementation of UserInterface.
+ * This exception is thrown when no session is available.
+ *
+ * Possible reasons for this are:
+ *
+ *     a) The session timed-out because the user waited too long.
+ *     b) The user has disabled cookies, and a new session is started on each
+ *        request.
  *
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
-class UnsupportedUserException extends AuthenticationServiceException
+class SessionUnavailableException extends AuthenticationException
 {
 }
