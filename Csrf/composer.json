@@ -1,7 +1,7 @@
 {
-    "name": "symfony/security-http",
+    "name": "symfony/security-csrf",
     "type": "library",
-    "description": "Symfony Security Component - HTTP Integration",
+    "description": "Symfony Security Component - CSRF Library",
     "keywords": [],
     "homepage": "http://symfony.com",
     "license": "MIT",
@@ -17,25 +17,18 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/security-core": "~2.4",
-        "symfony/event-dispatcher": "~2.1",
-        "symfony/http-foundation": "~2.4",
-        "symfony/http-kernel": "~2.4"
+        "symfony/security-core": "~2.4"
     },
     "require-dev": {
-        "symfony/form": "~2.0",
-        "symfony/routing": "~2.2",
-        "symfony/security-csrf": "~2.4",
-        "psr/log": "~1.0"
+        "symfony/http-foundation": "~2.1"
     },
     "suggest": {
-        "symfony/security-csrf": "",
-        "symfony/routing": ""
+        "symfony/http-foundation": "For using the class SessionTokenStorage."
     },
     "autoload": {
-        "psr-0": { "Symfony\\Component\\Security\\Http\\": "" }
+        "psr-0": { "Symfony\\Component\\Security\\Csrf\\": "" }
     },
-    "target-dir": "Symfony/Component/Security/Http",
+    "target-dir": "Symfony/Component/Security/Csrf",
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
