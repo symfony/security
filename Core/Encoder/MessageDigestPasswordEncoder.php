@@ -47,6 +47,11 @@ class MessageDigestPasswordEncoder extends BasePasswordEncoder
             throw new BadCredentialsException('Invalid password.');
         }
 
+        if($this->algorithm == 'SSHA'){
+            $encrytpted_password = '{SSHA}'.base64_encode(sha1($raw.$salt, true).$salt);
+            return $encrypted_password;
+        }
+
         if (!in_array($this->algorithm, hash_algos(), true)) {
             throw new \LogicException(sprintf('The algorithm "%s" is not supported.', $this->algorithm));
         }
@@ -67,6 +72,11 @@ class MessageDigestPasswordEncoder extends BasePasswordEncoder
      */
     public function isPasswordValid($encoded, $raw, $salt)
     {
+        if($this->algorithm == 'SSHA'){
+            $salt = substr(base64_decode(substr($encoded[0],6)),20);
+            return !$this->isPasswordTooLong($raw) && $this->comparePasswords($encoded[0], $this->encodePassword($raw, $salt));
+        }
+        
         return !$this->isPasswordTooLong($raw) && $this->comparePasswords($encoded, $this->encodePassword($raw, $salt));
     }
 }
