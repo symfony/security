@@ -137,7 +137,7 @@ class ExceptionListener
         $event->setThrowable(new AccessDeniedHttpException($exception->getMessage(), $exception));
 
         $token = $this->tokenStorage->getToken();
-        if (!$this->authenticationTrustResolver->isFullFledged($token)) {
+        if (!$this->authenticationTrustResolver->isFullFledged($token) && !$this->authenticationTrustResolver->isRememberMe($token)) {
             if (null !== $this->logger) {
                 $this->logger->debug('Access denied, the user is not fully authenticated; redirecting to authentication entry point.', ['exception' => $exception]);
             }
