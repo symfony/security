@@ -19,11 +19,13 @@ namespace Symfony\Component\Security\Core\Exception;
  */
 class InvalidCsrfTokenException extends AuthenticationException
 {
+    public const INVALID_CSRF_TOKEN = 'Invalid CSRF token.';
+    
     /**
      * {@inheritdoc}
      */
     public function getMessageKey()
     {
-        return 'Invalid CSRF token.';
+        return self::INVALID_CSRF_TOKEN;
     }
 }
